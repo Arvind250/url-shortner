@@ -20,7 +20,18 @@ async function redirectbyUrl(req,res) {
     )
     res.redirect(entry.redirectUrl)
 }
+
+async function getAnalyticsById (req,res){
+    const shortId = req.params.shortId
+    const result = await URL.findOne({shortId})
+    return res.json({
+        totalclicks : result.visitHistory.length,
+        analytics :result.visitHistory
+    })
+}
+
 module.exports = {
     generateNewUrl,
-    redirectbyUrl
+    redirectbyUrl,
+    getAnalyticsById
 }
