@@ -30,8 +30,18 @@ async function getAnalyticsById (req,res){
     })
 }
 
+async function getAllUrl (req,res){
+    const result = await URL.find()
+    const finalresult = result.map((item)=>({
+        originalUrl : item.redirectUrl,
+        shortUrl: item.shortId
+    }))
+    res.json(finalresult)
+}
+
 module.exports = {
     generateNewUrl,
     redirectbyUrl,
-    getAnalyticsById
+    getAnalyticsById,
+    getAllUrl
 }
