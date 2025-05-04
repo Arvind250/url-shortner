@@ -1,6 +1,7 @@
 const express = require("express")
 const path =require('path')
 const urlRoute = require('./routes/url')
+const userRoute = require('./routes/user')
 const {connectMongoDb}= require('./connect')
 const staticRoute = require('./routes/staticRouter')
 const app = express()
@@ -16,6 +17,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
 app.use('/url',urlRoute)
+app.use('/user',userRoute)
 app.use('/',staticRoute)
 
 app.listen(PORT,()=>{

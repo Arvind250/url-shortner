@@ -1,4 +1,4 @@
-const express =require('express')
+const express = require('express')
 const URL = require('../model/url')
 const router = express.Router()
 
@@ -7,6 +7,10 @@ router.get('/',async (req,res)=>{
     return res.render('home',{
         urls :allurls  
     })
+})
+
+router.get('/signup',(req,res)=>{
+    return res.render("signup")
 })
 
 module.exports =router
