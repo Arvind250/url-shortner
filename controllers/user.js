@@ -7,8 +7,17 @@ async function userSignup (req,res){
         email,
         password
     })
-    return res.render("home")
+    return res.redirect("/")
+}
+async function userLogin (req,res){
+    const {email,password} = req.body
+    const user = await User.findOne({email,password})
+    if(!user) return res.render("login",{
+        err: "Username or Password not found"
+    })
+    return res.redirect('/')
 }
 module.exports ={
-    userSignup
+    userSignup,
+    userLogin
 }
