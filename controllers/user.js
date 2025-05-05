@@ -17,9 +17,9 @@ async function userLogin (req,res){
     if(!user) return res.render("login",{
         err: "Username or Password not found"
     })
-    const sessionId = uuid4()
-    setUser(sessionId,user)
-    res.cookie("uid",sessionId)
+    
+    const token = setUser(user)
+    res.cookie("uid",token)
     return res.redirect('/')
 }
 module.exports ={
